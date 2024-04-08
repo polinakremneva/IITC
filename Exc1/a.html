@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="a.css">
+</head>
+<body>
+    <h1>hello world!!</h1>
+    <script>
+   
+        let h = parseInt(prompt("Enter height of rectangle:"));
+        let w = parseInt(prompt("Enter width of rectangle:"));
+        
+        while (isNaN(h) || h <= 0 || isNaN(w) || w <= 0) {
+        alert("Please enter some positive numbers for height and width!");
+        h = parseInt(prompt("Enter height of rectangle:"));
+        w = parseInt(prompt("Enter width of rectangle:"));
+        }
+
+        let area = h * w;
+        let perimeter = 2 * (h + w);
+
+        console.log("Area:", area);
+        console.log("Perimeter:", perimeter);
+    </script>
+</body>
+</html>
