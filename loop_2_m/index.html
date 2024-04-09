@@ -7,11 +7,15 @@
 </head>
 <body>
     <script>
+        let total = 0;
         let i = 1;
-        while (i < 101){
-            console.log(i)
+        while (i <= 5){
+            let number = parseInt(prompt("Enter a number:"));
             i++
+            total += number
         }
+        console.log("Sum is:" + total)
+        console.log("Average is:" + total / 5)
     </script>
 </body>
 </html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let numbers = [];
+        let i = 1;
+
+        while (i <= 5) {
+            let num = parseInt(prompt("Enter a number: "));
+            if (!isNaN(num)) {
+                numbers.push(num);
+                i++;
+            } else {
+                console.log("Please enter a number!");
+            }
+        }
+
+        let minNumber = Number.MAX_SAFE_INTEGER;
+        let maxNumber = Number.MIN_SAFE_INTEGER;
+
+        for (let number of numbers) {
+            if (number < minNumber) {
+                minNumber = number;
+            }
+            if (number > maxNumber) {
+                maxNumber = number;
+            }
+        }
+
+        console.log("Min number is: " + minNumber);
+        console.log("Max number is: " + maxNumber);
+    </script>
+</body>
+</html>

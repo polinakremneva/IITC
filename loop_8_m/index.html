@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let originalNum = parseInt(prompt("Enter a number:"));
+        let num = originalNum;
+        let total = 1;
+
+        do {
+            total = total * num;
+            num--;
+        }
+        while (num > 1)
+        console.log("Factorial of " + originalNum + " is " + total);
+    
+        
+        let numbers = [];
+        let i = 1;
+        let minNumber = Number.MAX_SAFE_INTEGER;
+        let maxNumber = Number.MIN_SAFE_INTEGER;
+
+        do {
+            let num = parseInt(prompt("Enter a number: "));
+            if (!isNaN(num)) {
+                numbers.push(num);
+                i++;
+            } else {
+                console.log("Please enter a number!");
+            }
+        }
+        while (i <= 5)
+
+        for (let number of numbers) {
+            if (number < minNumber) {
+                minNumber = number;
+            }
+            if (number > maxNumber) {
+                maxNumber = number;
+            }
+        }
+
+        console.log("Min number is: " + minNumber);
+        console.log("Max number is: " + maxNumber);
+    
+    </script>
+</body>
+</html>
