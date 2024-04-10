@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       function longest(str) {
+        const pairs = str.split(",");
+        let result = [];
+        maxlength = 0;
+        for (let i = 0; i < pairs.length; i++) {
+            const each_pair = pairs[i].split(":");
+            result.push(each_pair);
+
+            let x = each_pair[1];
+            if (x.length > maxlength) {
+                maxlength = x.length
+            }
+        }
+
+        return maxlength;
+    }
+    console.log(longest("name:polina, surname:kremneva, city:givatayim"));
+    </script>
+</body>
+</html>

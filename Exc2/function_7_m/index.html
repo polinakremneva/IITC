@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function triangle(side) {
+        for (let i = 1; i <= side; i++) {
+            let row = "";
+            for (let j = 1; j <= i; j++) {
+                row += "*";
+            }
+            console.log(row);
+            }
+        }
+        console.log(triangle(7))
+    </script>
+</body>
+</html>
