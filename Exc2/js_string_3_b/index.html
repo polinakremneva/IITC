@@ -9,21 +9,22 @@
     <script>
        function longest(str) {
         const pairs = str.split(",");
-        let result = [];
+        let big_array = [];
         maxlength = 0;
         for (let i = 0; i < pairs.length; i++) {
             const each_pair = pairs[i].split(":");
-            result.push(each_pair);
+            big_array.push(each_pair);
 
             let x = each_pair[1];
             if (x.length > maxlength) {
                 maxlength = x.length
             }
         }
-
         return maxlength;
     }
     console.log(longest("name:polina, surname:kremneva, city:givatayim"));
     </script>
 </body>
 </html>
+
+
