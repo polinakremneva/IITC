@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function addBook(booksArray, bookName, numberOfPages) {
+        booksArray.push({ name: bookName, pages: numberOfPages });
+      }
+      const books = [];
+      addBook(books, "Book 1", 10);
+      addBook(books, "Book 2", 20);
+      addBook(books, "Book 3", 30);
+
+      console.log(books);
+    </script>
+  </body>
+</html>

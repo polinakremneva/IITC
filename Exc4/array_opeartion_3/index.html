@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function updateBookPages(booksArray, bookName, newPages) {
+        for (let book of booksArray) {
+          if (book.name == bookName) {
+            book.pages = newPages;
+            return book;
+          }
+        }
+      }
+      const myBooks = [
+        {name: "Book 1", pages: 10},
+        {name: "Book 2", pages: 20},
+        {name: "Book 3", pages: 30},
+      ];
+      console.log(updateBookPages(myBooks, "Book 2", 25)); 
+    </script>
+  </body>
+</html>
