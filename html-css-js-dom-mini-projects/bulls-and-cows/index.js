@@ -18,7 +18,7 @@ function appendToDisplay(value) {
     case 0:
       playerBoard[0] = value;
       if (playerBoard[roundCounter] === 0) {
-        playerBoard[roundCounter] = "0"; 
+        playerBoard[roundCounter] = "0";
       }
       document.getElementById("display1").value = value;
       roundCounter++;
@@ -30,7 +30,7 @@ function appendToDisplay(value) {
       } else {
         playerBoard[1] = value;
         if (playerBoard[roundCounter] === 0) {
-          playerBoard[roundCounter] = "0"; 
+          playerBoard[roundCounter] = "0";
         }
         document.getElementById("display2").value = value;
       }
@@ -43,7 +43,7 @@ function appendToDisplay(value) {
       } else {
         playerBoard[2] = value;
         if (playerBoard[roundCounter] === 0) {
-          playerBoard[roundCounter] = "0"; 
+          playerBoard[roundCounter] = "0";
         }
         document.getElementById("display3").value = value;
       }
@@ -56,7 +56,8 @@ function appendToDisplay(value) {
       } else {
         playerBoard[3] = value;
         if (playerBoard[roundCounter] === 0) {
-          playerBoard[roundCounter] = "0"; r
+          playerBoard[roundCounter] = "0";
+          r;
         }
         document.getElementById("display4").value = value;
       }
@@ -64,7 +65,6 @@ function appendToDisplay(value) {
       break;
   }
 }
-
 
 function bullCheck() {
   let counter = 0;
@@ -96,11 +96,14 @@ function checkBoard() {
     win = true;
     alert("You win!");
   }
+
   if (roundCounter === 4) {
     roundCounter = 0;
     addElement();
+    playerBoard = [];
   }
 }
+
 function addElement() {
   const newRow = document.createElement("div");
   newRow.id = "row";
