@@ -1,0 +1,276 @@
+:root {
+  --main-font: "Work Sans", sans-serif;
+  --main-line-height: 1.15;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #e9e4f2;
+  line-height: var(--main-line-height);
+  font-family: var(--main-font);
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  background-color: #c0dcbc;
+}
+
+ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+li {
+  list-style: none;
+  padding-inline: 10px;
+}
+
+a {
+  list-style: none;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 0 15px;
+  color: rgb(39, 103, 0);
+  transition: 0.2s;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-family: "Days One", sans-serif;
+  color: black;
+  text-align: center;
+  font-size: 24px;
+  margin: 40px 100px 100px 100px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapper img {
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  margin-top: 100px;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  height: fit-content;
+  background-color: white;
+  text-align: center;
+  padding: 30px 40px 60px;
+  margin: 0 auto;
+  box-shadow: 10px 10px 0px rgba(25, 120, 14, 0.4),
+    -10px -10px 0px rgba(53, 84, 6, 0.8);
+}
+
+.aboutme {
+  text-align: center;
+  box-sizing: inherit;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.img img {
+  width: 40%;
+  height: 40%;
+  object-fit: cover;
+  border-radius: 40px;
+}
+
+.aboutme-text {
+  height: auto;
+  width: 40%;
+  margin-left: 40px;
+  text-align: left;
+}
+
+.project {
+  text-align: center;
+  box-sizing: inherit;
+}
+
+#projects {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.calculator {
+  text-align: center;
+  box-sizing: inherit;
+  width: 400px;
+  height: 300px;
+  background: white;
+  position: relative;
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+
+.calculator h2 {
+  margin: 0;
+}
+
+.calculator img {
+  width: 300px;
+}
+
+.bulls-and-cows {
+  text-align: center;
+  box-sizing: inherit;
+  width: 400px;
+  height: 300px;
+  background: white;
+  position: relative;
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+
+.bulls-and-cows img {
+  width: 300px;
+  margin-block: 20px;
+}
+
+.contacts {
+  width: 100%;
+  padding-block: 50px;
+  text-align: center;
+  background-color: rgba(157, 205, 163, 0.45);
+}
+
+.contact-form {
+  display: flex;
+  text-align: left;
+  width: 100%;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.contact-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-right: 50px;
+  padding-inline: 30px;
+}
+
+.message {
+  flex: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 70px;
+}
+
+.message button {
+  font-family: var(--main-font);
+  color: #00510c;
+  border: 1px green;
+  border-radius: 5px;
+  background: rgb(90, 192, 107);
+  width: 140px;
+  height: 40px;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  font-size: larger;
+}
+
+#msg {
+  flex: 1;
+}
+input {
+  font-family: inherit;
+  font-size: 100%;
+  border-radius: 5px;
+  padding: 15px 20px;
+  border: 0;
+}
+
+.contacts p {
+  margin: 0 0 40px 0;
+}
+
+label {
+  color: rgb(78, 66, 66);
+}
+
+footer {
+  padding-inline: 30px;
+}
+
+@media (max-width: 480px) {
+  nav {
+    width: 100%;
+    margin: 0;
+    position: fixed;
+    z-index: 1;
+  }
+  nav a {
+    padding: 0;
+    margin: 0;
+  }
+  ul {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  h1 {
+    font-size: 20px;
+    margin: 20px;
+  }
+
+  .wrapper {
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .about {
+    width: 60%;
+  }
+
+  .aboutme-text {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+
+  .contact-form {
+    flex-direction: column;
+  }
+
+  .contact-details {
+    margin-right: 0;
+  }
+
+  .message {
+    padding-inline: 30px;
+  }
+
+  .message button {
+    width: 100%;
+    text-align: center;
+  }
+}
