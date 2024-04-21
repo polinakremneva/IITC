@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bulls and Cows</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="textWrapper">
+      <h1>Bulls and Cows</h1>
+      <p>
+        Discover the hidden code! Click, or use arrow keys, to change your guess
+        in each box. (Bulls and Cows is similar to, but came before, the board
+        game MastermindTM*) <br />
+        Bulls = correct code, correct position. <br />
+        Cows = correct code, wrong position.
+      </p>
+    </div>
+    <div class="downWrapper">
+      <div id="rows">
+        <div id="row">
+          <div id="left">
+            <div class="question">?</div>
+            <div class="question">?</div>
+            <div class="question">?</div>
+            <div class="question">?</div>
+          </div>
+
+          <div id="right">
+            <div class="bull" id="bulls" style="color: #006400">Bulls:</div>
+            <div class="cow" id="cows" style="color: #0300ff">Cows:</div>
+          </div>
+        </div>
+        <div id="row">
+          <div id="left">
+            <input class="window" id="display1"/>
+            <input class="window" id="display2"/>
+            <input class="window" id="display3"/>
+            <input class="window" id="display4"/>
+          </div>
+          <div class="right">
+            <button id="go" type="button" onclick="checkBoard()">Go</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="keybd">
+      <div class="numbers">
+        <button class="key" onclick="appendToDisplay(0)">0</button>
+        <button class="key" onclick="appendToDisplay(1)">1</button>
+        <button class="key" onclick="appendToDisplay(2)">2</button>
+        <button class="key" onclick="appendToDisplay(3)">3</button>
+        <button class="key" onclick="appendToDisplay(4)">4</button>
+        <button class="key" onclick="appendToDisplay(5)">5</button>
+        <button class="key" onclick="appendToDisplay(6)">6</button>
+        <button class="key" onclick="appendToDisplay(7)">7</button>
+        <button class="key" onclick="appendToDisplay(8)">8</button>
+        <button class="key" onclick="appendToDisplay(9)">9</button>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

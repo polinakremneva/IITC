@@ -3,62 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tic-Tac-Toe</title>
 </head>
 <body>
     <script>
-        function winCheck(name, mark) {
-            let counter = 0;
+        let size = parseInt(prompt("Please choose the size of the board."), 10);
+        let template = Array.from({ length: size }, () => Array(size).fill(" |#| "));
+
+        let pl1 = prompt("Player 1, please enter your name.");
+        let pl2 = prompt("Player 2, please enter your name.");
+
+        let pl1Mark, pl2Mark;
+
+        function chooseMarks() {
+            pl1Mark = prompt(pl1 + ", please choose your mark (X or O):").toUpperCase();
+            while (pl1Mark !== 'X' && pl1Mark !== 'O') {
+                console.log("Invalid mark! Please choose either X or O.");
+                pl1Mark = prompt(pl1 + ", please choose your mark (X or O):").toUpperCase();
+            }
+            pl2Mark = (pl1Mark === 'X') ? 'O' : 'X';
+        }
+
+        function isRowMatch(row) {
+            const first = template[row][0];
+            if (first === " |#| ") {
+                return false;
+            }
+            for (let i = 1; i < size; i++) {
+                if (template[row][i] !== first) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function isColumnMatch(column) {
+            const first = template[0][column];
+            if (first === " |#| ") {
+                return false;
+            }
+            for (let i = 1; i < size; i++) {
+                if (template[i][column] !== first) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function isFirstDiagonalMatch() {
+            const first = template[0][0];
+            if (first === " |#| ") {
+                return false;
+            }
+            for (let i = 1; i < size; i++) {
+                if (template[i][i] !== first) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function isSecondDiagonalMatch() {
+            const first = template[0][size - 1];
+            if (first === " |#| ") {
+                return false;
+            }
+            for (let i = 1; i < size; i++) {
+                if (template[i][size - i - 1] !== first) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function winCheck(name) {
             for (let row = 0; row < size; row++) {
-                let rowMatch = true;
-                for (let i = 1; i < size; i++) {
-                    if (template[row][0] !== template[row][i]) {
-                        rowMatch = false;
-                        break;
-                    }
-                }
-                if (rowMatch && template[row][0] !== " |#| ") {
-                    counter++;
+                if (isRowMatch(row)) {
+                    console.log(name + " has won!");
+                    return true;
                 }
             }
+
             for (let column = 0; column < size; column++) {
-                let columnMatch = true;
-                for (let i = 1; i < size; i++) {
-                    if (template[0][column] !== template[i][column]) {
-                        columnMatch = false;
-                        break;
-                    }
-                }
-                if (columnMatch && template[0][column] !== " |#| ") {
-                    counter++;
+                if (isColumnMatch(column)) {
+                    console.log(name + " has won!");
+                    return true;
                 }
             }
-            let diagonalMatch1 = true;
-            for (let diagonal = 1; diagonal < size; diagonal++) {
-                if (template[0][0] !== template[diagonal][diagonal]) {
-                    diagonalMatch1 = false;
-                    break;
-                }
-            }
-            if (diagonalMatch1 && template[0][0] !== " |#| ") {
-                counter++;
-            }
-            
-            let diagonalMatch2 = true;
-            for (let row = 0, column = size - 1; row < size && column >= 0; row++, column--) {
-                if (template[0][size - 1] !== template[row][column]) {
-                    diagonalMatch2 = false;
-                    break;
-                }
-            }
-            if (diagonalMatch2 && template[0][size - 1] !== " |#| ") {
-                counter++;
-            }
-            
-            if (counter > 0) {
+
+            if (isFirstDiagonalMatch() || isSecondDiagonalMatch()) {
                 console.log(name + " has won!");
-                win = true;
+                return true;
             }
+
+            return false;
         }
 
         function isBoardFull() {
@@ -73,9 +111,9 @@
         }
 
         function pl1Turn() {
-            let row = prompt(pl1 + ", please enter the row you want to place your piece.");
-            let column = prompt(pl1 + ", please enter the column you want to place your piece.");
-            if (template[row][column] == " |#| ") {
+            let row = parseInt(prompt(pl1 + ", enter row:"), 10);
+            let column = parseInt(prompt(pl1 + ", enter column:"), 10);
+            if (template[row][column] === " |#| ") {
                 template[row][column] = pl1Mark;
                 console.log(template);
             } else {
@@ -85,9 +123,9 @@
         }
 
         function pl2Turn() {
-            let row = prompt(pl2 + ", please enter the row you want to place your piece.");
-            let column = prompt(pl2 + ", please enter the column you want to place your piece.");
-            if (template[row][column] == " |#| ") {
+            let row = parseInt(prompt(pl2 + ", enter row:"), 10);
+            let column = parseInt(prompt(pl2 + ", enter column:"), 10);
+            if (template[row][column] === " |#| ") {
                 template[row][column] = pl2Mark;
                 console.log(template);
             } else {
@@ -97,41 +135,24 @@
         }
 
         function gamePlay() {
-            while (win == false && !isBoardFull()) {
+            let win = false;
+            while (!win && !isBoardFull()) {
                 pl1Turn();
-                winCheck(pl1, pl1Mark);
-                if (win) break;
+                if (winCheck(pl1)) {
+                    win = true;
+                    break;
+                }
                 pl2Turn();
-                winCheck(pl2, pl2Mark);
+                if (winCheck(pl2)) {
+                    win = true;
+                    break;
+                }
             }
             console.log("Game Over");
         }
 
-        let template = [];
-        let size = prompt("Please choose the size of the board.");
-        for (let row = 0; row < size; row++) {
-            template[row] = [];
-            for (let j = 0; j < size; j++) {
-                template[row][j] = " |#| ";
-            }
-        }
-        console.log(template);
-
-        let win = false;
-        let pl1 = prompt("Player1, please enter your name.");
-        let pl2 = prompt("Player2, please enter your name.");
-
-        let pl1Mark, pl2Mark;
-        function chooseMarks() {
-            pl1Mark = prompt(pl1 + ", please choose your mark (X or O):").toUpperCase();
-            if (pl1Mark !== 'X' && pl1Mark !== 'O') {
-                console.log("Invalid mark! Please choose either X or O.");
-                chooseMarks();
-            }
-            pl2Mark = (pl1Mark === 'X') ? 'O' : 'X';
-        }
-chooseMarks();
-gamePlay();
+        chooseMarks();
+        gamePlay();
 
     </script>
 </body>
