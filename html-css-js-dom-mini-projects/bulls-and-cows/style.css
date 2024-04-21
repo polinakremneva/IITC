@@ -108,3 +108,20 @@ body {
     width: 40px;
     display: block;
   } 
+
+  .new {
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    font-size: smaller;
+    height: fit-content;
+  }
+
+  #new, #end{
+    height: fit-content;
+  }
+
+  h1 {
+    -webkit-text-stroke: 1px aliceblue;
+    color: #609fde;
+  }
