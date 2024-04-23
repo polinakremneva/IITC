@@ -7,24 +7,25 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #e9e4f2;
+  background-color: #9728e7;
   line-height: var(--main-line-height);
   font-family: var(--main-font);
 }
 
 nav {
   display: flex;
+  background-color: #200e3d;
   justify-content: center;
   position: fixed;
-  z-index: 1;
   width: 100%;
-  background-color: #c0dcbc;
+  z-index: 1;
 }
 
 ul {
   display: flex;
   align-items: center;
   list-style: none;
+  padding: 0;
 }
 
 li {
@@ -33,13 +34,11 @@ li {
 }
 
 a {
-  list-style: none;
-  text-decoration: none;
   font-size: 16px;
-  padding: 0 15px;
-  color: rgb(39, 103, 0);
+  color: white;
   transition: 0.2s;
   text-transform: uppercase;
+  text-decoration: none;
 }
 
 h1 {
@@ -51,31 +50,35 @@ h1 {
 }
 
 .wrapper {
+  padding-top: 130px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .wrapper img {
+  border-style: none;
   border-radius: 50%;
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  margin-top: 100px;
+  margin: 0 auto;
+  max-width: 440px;
+  display: block;
 }
 
 .about {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 70%;
-  height: fit-content;
+  width: 90%;
+  max-width: 1100px;
+  height: auto;
   background-color: white;
   text-align: center;
-  padding: 30px 40px 60px;
+  padding: 40px 50px 70px;
   margin: 0 auto;
-  box-shadow: 10px 10px 0px rgba(25, 120, 14, 0.4),
-    -10px -10px 0px rgba(53, 84, 6, 0.8);
+  box-shadow: 10px 10px 0px rgb(0 0 0 / 40%),
+    -10px -10px 0px rgb(255 114 114 / 80%);
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: wrap;
 }
 
 .aboutme {
@@ -83,16 +86,18 @@ h1 {
   box-sizing: inherit;
   padding: 5px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.img img {
-  width: 40%;
-  height: 40%;
-  object-fit: cover;
-  border-radius: 40px;
+p {
+  line-height: var(--main-line-height);
+  font-family: var(--main-line-height);
+  cursor: auto;
+
+  font-size: 22px;
 }
 
 .aboutme-text {
@@ -100,6 +105,13 @@ h1 {
   width: 40%;
   margin-left: 40px;
   text-align: left;
+}
+
+.img img {
+  height: 450px;
+  width: 400px;
+  background-size: cover;
+  background-position: center;
 }
 
 .project {
@@ -115,6 +127,10 @@ h1 {
   align-items: center;
 }
 
+#projects a {
+  color: black;
+}
+
 .calculator {
   text-align: center;
   box-sizing: inherit;
@@ -127,11 +143,11 @@ h1 {
 }
 
 .calculator h2 {
-  margin: 0;
+  margin-bottom: 10px;
 }
 
 .calculator img {
-  width: 300px;
+  width: 250px;
 }
 
 .bulls-and-cows {
@@ -152,17 +168,36 @@ h1 {
 
 .contacts {
   width: 100%;
-  padding-block: 50px;
+  height: auto;
+  padding: 75px 0 50px 0;
   text-align: center;
-  background-color: rgba(157, 205, 163, 0.45);
+  background-color: #3c366e;
+}
+
+.contacts p {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.contacts h2,
+.contacts p {
+  color: white;
+  font-family: "Days One", sans-serif;
 }
 
 .contact-form {
+  max-width: 800px;
   display: flex;
   text-align: left;
-  width: 100%;
-  justify-content: space-between;
+  max-width: 1100px;
   margin: 0 auto;
+  color: white;
+}
+
+.contact-form label {
+  display: block;
+  margin: 9px;
+  color: white;
 }
 
 .contact-details {
@@ -170,7 +205,6 @@ h1 {
   display: flex;
   flex-direction: column;
   text-align: left;
-  margin-right: 50px;
   padding-inline: 30px;
 }
 
@@ -180,21 +214,22 @@ h1 {
   display: flex;
   flex-direction: column;
   padding-inline: 70px;
+  width: 60%;
 }
 
 .message button {
-  font-family: var(--main-font);
-  color: #00510c;
-  border: 1px green;
+  color: #1d3d5f;
+  border: 0;
   border-radius: 5px;
-  background: rgb(90, 192, 107);
+  background: lightblue;
   width: 140px;
   height: 40px;
-  margin-top: 30px;
+  margin-top: 40px;
+  margin-left: auto;
+  text-transform: uppercase;
+  font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
-  text-transform: uppercase;
-  font-size: larger;
 }
 
 #msg {
@@ -208,69 +243,94 @@ input {
   border: 0;
 }
 
-.contacts p {
-  margin: 0 0 40px 0;
-}
-
-label {
-  color: rgb(78, 66, 66);
-}
-
 footer {
-  padding-inline: 30px;
+  background-color: #1f2027;
+  color: white;
+  height: 90px;
+}
+
+footer p {
+    margin: 0;
+    padding-top: 30px;
 }
 
 @media (max-width: 480px) {
+  body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
   nav {
-    width: 100%;
-    margin: 0;
     position: fixed;
-    z-index: 1;
-  }
-  nav a {
-    padding: 0;
-    margin: 0;
-  }
-  ul {
-    flex-direction: column;
-    padding: 0;
   }
 
-  h1 {
-    font-size: 20px;
-    margin: 20px;
+  ul {
+    flex-direction: row;
   }
 
   .wrapper {
-    align-items: center;
-    padding: 0;
-    margin: 0;
+    padding-top: 70px;
+    width: 100%;
+  }
+
+  .wrapper img {
+    width: 150px;
+    height: 150px;
   }
 
   .about {
-    width: 60%;
+    width: 80%;
   }
-
-  .aboutme-text {
-    width: 100%;
-    text-align: center;
+  .img img {
+    width: 90%;
+    height: 20%;
+  }
+  .about p {
     margin: 0;
+    text-align: start;
+    width: 100%;
+  }
+  .aboutme-text {
+    height: auto;
+    width: 70%;
+    margin-left: 0;
   }
 
+  .project {
+    max-width: 100%;
+  }
+  #projects {
+    max-width: 100%;
+  }
+
+  .calculator,
+  .bulls-and-cows {
+    padding: 10px;
+    width: 300px;
+    height: 300px;
+  }
+
+  .contacts {
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
   .contact-form {
     flex-direction: column;
-  }
-
-  .contact-details {
-    margin-right: 0;
+    justify-content: center;
+    align-items: center;
   }
 
   .message {
-    padding-inline: 30px;
+    padding: 10px;
   }
 
   .message button {
     width: 100%;
-    text-align: center;
+  }
+
+  footer {
+    width: 100%;
   }
 }
