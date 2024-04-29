@@ -1,0 +1,261 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.bbc-bar ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0;
+}
+.bbc-bar a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  padding-inline: 12px;
+}
+input {
+  background: url(/images/magnifying-glass.png) no-repeat 160px;
+  outline: none;
+  font-size: 16px;
+  padding: 5px;
+  background-color: #e4e4e4;
+  border: none;
+}
+#signinphoto{
+    width: 25px;
+    height: 25px;padding-right: 20px;
+}
+#bbclogo{
+    width: 120px;
+    height: 35px;
+}
+#line{
+    height: 35px;
+}
+#bell{
+    width: 25px;
+    height: 25px;
+}
+.first-line{
+    display: flex;
+    justify-content: center;
+    gap: 570px;
+    background-color: #bb1919;
+    color: white;
+    align-items: center;
+    padding-top: 13px;
+    margin: 0;
+}
+.first-line h1{
+    margin: 0;
+}
+.upper-red{
+    display: flex;
+    align-items: center;
+    border: 0.5px solid #bb3838;
+}
+.upper-red a{
+    font-size: 30px;
+    color: white;
+    padding-inline: 10px;
+    text-decoration: none;
+}
+.second-line ul{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #a91717;
+    margin: 0;
+    padding-block: 10px;
+}
+.news-bar .second-line a{
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    border-left: #bb3838 1px solid;
+    padding-inline: 8px;
+}
+.news-bar .second-line a:hover{
+    text-decoration: underline;
+}
+.news-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#more{
+    display: flex;
+    align-items: center;
+} 
+#signin {
+    display: flex;
+    align-items: center;
+}
+.date{
+    display: flex;
+    align-items: center;
+}
+.content{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.down-sight{
+    flex-wrap: wrap;
+}
+.main-article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.right img{
+    width: 400px;
+    height: 224px;
+    padding: 20px;
+}
+.main-article h2{
+    border-bottom: 2px solid #a91717;
+    width: 110px;
+    font-size: 20px;
+    font-weight: unset;
+}
+.article-container{
+    border-right: 1px solid #cccccc;
+
+}
+.article-container a{
+    text-decoration: none;
+    font-size: 28px;
+    color: black;
+    font-weight: bold;
+}
+.date a{
+    font-size: 16px;
+    padding-left: 10px;
+    border-left: 1px solid #66717a;
+}
+.left a{
+    font-size: 16px;
+    font-weight: unset;
+}
+.left a:hover{
+    color: blue;
+}
+.down-sight{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.video-text{
+    display: flex;
+}
+.video-text img{
+    width: 110px;
+    height: 60px;
+    padding-inline: 5px;
+}
+.video-text p{
+    margin: 0;
+}
+#downtext{
+    font-size: 16px;
+    color: #a91717;
+    font-weight: unset;
+}
+#downer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-right: 5px;
+    border-right: 1px solid #cccccc;
+}
+#downer img{
+    width: 20px;
+    height: 20px;
+}
+.watch-learn p{
+    color: #66717a;
+}
+.watch-learn a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+.watch-learn {
+    margin-top: 30px;
+    margin-left: 16px;
+}
+
+@media (max-width: 768px) {
+    .bbc-bar {
+      padding: 10px 10px;
+    }
+  
+    .first-line {
+      justify-content: center; 
+      gap: 0; 
+    }
+  
+    .second-line {
+      flex-direction: column; 
+    }
+  
+    .main-article {
+      flex-direction: column;
+    }
+  
+    .right img {
+      width: 100%; 
+    }
+  
+    .video-text {
+      flex-direction: column;
+      align-items: center; 
+    }
+  }
+  @media (max-width: 480px) {
+    .bbc-bar ul {
+      justify-content: center;
+      padding: 5px;
+    }
+  
+    .first-line {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .second-line {
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    .main-article {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .right img {
+      width: 100%; 
+      padding: 0;
+    }
+  
+    .video-text {
+      flex-direction: column; 
+      align-items: center;
+    }
+  }
