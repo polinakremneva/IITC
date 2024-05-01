@@ -2,17 +2,17 @@
 const computerBoard = [];
 let playerBoard = [];
 let roundCounter = 0;
-win = false;
+let win = false;
 const results = [];
 let currentPlayer = {
-  name: "", 
-  attempts: 0, 
+  name: "",
+  attempts: 0,
 };
 
 // flow
 function askPlayerName() {
-  currentPlayer.name = prompt("Put your name:"); 
-  currentPlayer.attempts = 0; 
+  currentPlayer.name = prompt("Put your name:");
+  currentPlayer.attempts = 0;
 }
 
 function generateComputerBoard() {
@@ -102,16 +102,19 @@ function cowCheck() {
 function checkBoard() {
   bullCheck();
   cowCheck();
-  currentPlayer.attempts++; 
+  currentPlayer.attempts++;
 
   if (playerBoard.toString() == computerBoard.toString()) {
     win = true;
     alert("You win with " + currentPlayer.attempts + " attempts!");
-    
-    results.push({ name: currentPlayer.name, attempts: currentPlayer.attempts }); 
-    console.table(results); 
 
-    resetGame(); 
+    results.push({
+      name: currentPlayer.name,
+      attempts: currentPlayer.attempts,
+    });
+    console.table(results);
+
+    resetGame();
   }
 
   if (roundCounter === 4) {
@@ -126,25 +129,25 @@ function addElement() {
   newRow.id = "row";
   newRow.innerHTML = `
     <div id="left">
-      <input class="window" value="${playerBoard[0] }" />
-      <input class="window" value="${playerBoard[1] }" />
-      <input class="window" value="${playerBoard[2] }" />
-      <input class="window" value="${playerBoard[3] }" />
+      <input class="window" value="${playerBoard[0]}" />
+      <input class="window" value="${playerBoard[1]}" />
+      <input class="window" value="${playerBoard[2]}" />
+      <input class="window" value="${playerBoard[3]}" />
     </div>
     <div class="right">
-      <button onclick="checkBoard()">Go</button>
+      <button class="go" onclick="checkBoard()">Go</button>
     </div>
   `;
   document.getElementById("rows").appendChild(newRow);
 }
 
 function resetGame() {
-  computerBoard.length = 0; 
-  playerBoard = []; 
+  computerBoard.length = 0;
+  playerBoard = [];
   roundCounter = 0;
-  win = false; 
+  win = false;
 
-  generateComputerBoard(); 
+  generateComputerBoard();
 
   document.getElementById("display1").value = "";
   document.getElementById("display2").value = "";
@@ -154,7 +157,6 @@ function resetGame() {
   document.querySelector(".bull").innerText = "Bulls:";
   document.querySelector(".cow").innerText = "Cows:";
 
-  
   const rowsElement = document.getElementById("rows");
   while (rowsElement.children.length > 2) {
     rowsElement.removeChild(rowsElement.lastChild);
@@ -165,12 +167,15 @@ function resetGame() {
 
 function endGame() {
   if (currentPlayer.name) {
-    results.push({ name: currentPlayer.name, attempts: currentPlayer.attempts }); 
+    results.push({
+      name: currentPlayer.name,
+      attempts: currentPlayer.attempts,
+    });
   }
   alert("You ended the game!");
-  console.table(results); 
-  window.close(); 
+  console.table(results);
+  window.close();
 }
 
 generateComputerBoard();
-askPlayerName()
+askPlayerName();

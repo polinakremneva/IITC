@@ -86,30 +86,26 @@ h1 {
   box-sizing: inherit;
   padding: 5px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
 }
-
-p {
+.aboutme p {
   line-height: var(--main-line-height);
-  font-family: var(--main-line-height);
-  cursor: auto;
-
-  font-size: 22px;
+  margin-bottom: 10px;
+  margin-top: 1px;
 }
 
 .aboutme-text {
-  height: auto;
   width: 40%;
+  height: 500px;
+  font-size: 18px;
   margin-left: 40px;
   text-align: left;
 }
 
 .img img {
-  height: 450px;
-  width: 400px;
+  height: 500px;
+  width: 440px;
   background-size: cover;
   background-position: center;
 }
@@ -122,9 +118,10 @@ p {
 #projects {
   display: flex;
   justify-content: center;
-  flex-direction: column;
   text-align: center;
   align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
 }
 
 #projects a {
@@ -250,10 +247,20 @@ footer {
 }
 
 footer p {
-    margin: 0;
-    padding-top: 30px;
+  margin: 0;
+  padding-left: 20px;
 }
 
+.down{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+}
+.social-media i{
+  font-size: 30px;
+  padding-right: 20px;
+}
 @media (max-width: 480px) {
   body {
     box-sizing: border-box;
@@ -272,12 +279,12 @@ footer p {
     padding-top: 70px;
     width: 100%;
   }
-
+  
   .wrapper img {
     width: 150px;
     height: 150px;
   }
-
+  
   .about {
     width: 80%;
   }
@@ -290,10 +297,14 @@ footer p {
     text-align: start;
     width: 100%;
   }
-  .aboutme-text {
+
+  .aboutme{
     height: auto;
-    width: 70%;
+    flex-wrap: wrap;
     margin-left: 0;
+  }
+  .aboutme-text{
+    width: 90%;
   }
 
   .project {
@@ -332,5 +343,6 @@ footer p {
 
   footer {
     width: 100%;
+    padding-left: 0;
   }
 }
