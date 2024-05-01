@@ -6,13 +6,21 @@ let win = false;
 const results = [];
 let currentPlayer = {
   name: "",
-  attempts: 0,
+  attempts: 0, 
 };
 
 // flow
 function askPlayerName() {
-  currentPlayer.name = prompt("Put your name:");
+    console.log("function called")
+  const inputField = document.getElementById("playerName");
+  currentPlayer.name = inputField.value;
   currentPlayer.attempts = 0;
+  makeName();
+}
+function makeName() {
+  const newRow = document.createElement("div");
+  newRow.innerHTML = `<p>Name:${currentPlayer.name}\nAttempts:${currentPlayer.attempts}</p>`;
+  document.querySelector("#nameContainer").appendChild(newRow);
 }
 
 function generateComputerBoard() {
@@ -98,11 +106,16 @@ function cowCheck() {
   }
   document.querySelector(".cow").innerText = "Cows: " + counter;
 }
+function updatePlayerInfo() {
+  const nameContainer = document.getElementById("nameContainer");
+  nameContainer.innerText = `Name: ${currentPlayer.name}\nAttempts: ${currentPlayer.attempts}`;
+}
 
 function checkBoard() {
   bullCheck();
   cowCheck();
   currentPlayer.attempts++;
+  updatePlayerInfo()
 
   if (playerBoard.toString() == computerBoard.toString()) {
     win = true;
@@ -178,4 +191,3 @@ function endGame() {
 }
 
 generateComputerBoard();
-askPlayerName();
