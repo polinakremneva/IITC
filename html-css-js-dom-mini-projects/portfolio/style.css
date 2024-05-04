@@ -127,6 +127,9 @@ h1 {
 #projects a {
   color: black;
 }
+#projects a:hover{
+  
+}
 
 .calculator {
   text-align: center;

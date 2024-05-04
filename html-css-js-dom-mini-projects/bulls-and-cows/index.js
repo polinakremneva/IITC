@@ -32,6 +32,10 @@ function generateComputerBoard() {
   }
 }
 
+/**
+ * 
+ * @param {*} value 
+ */
 function appendToDisplay(value) {
   switch (roundCounter) {
     case 0:
