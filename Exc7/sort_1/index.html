@@ -7,23 +7,50 @@
   </head>
   <body>
     <script>
-      arr1 = [5, 2, 7, 1, 0];
-
-      function bubbleSort(arr) {
-        for (let i = 0; i < arr.length - 1; i++) {
-          for (let j = 0; j < arr.length - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-              let temp = arr[j];
-              arr[j] = arr[j + 1];
-              arr[j + 1] = temp;
+          function computeMin(numbers, indexToStart) {
+            let minIndex = indexToStart;
+            for (let i = indexToStart; i < numbers.length; i++) {
+              if (numbers[i] < numbers[minIndex]) {
+                minIndex = i;
+              }
             }
+            return minIndex;
           }
-        }
-        return arr;
-      }
+          
+          function switchNumbers(numbers, i, j){
+            [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+          }
+          
+          function sort(numbers){
+            for (let i = 0; i < numbers.length; i++){
+              let indexMin = computeMin(numbers, i);
+              switchNumbers(numbers, i, indexMin);
+            }
+            return numbers;
+          }
+          const numbers = [8, 5, 2, 1, 4, 3];
+          console.log(computeMin(numbers, 0));
+          console.log(sort(numbers));
+          
 
-      console.log("Before sorting: ", arr1);
-      console.log("After sorting: ", bubbleSort(arr1));
+
+          // arr1 = [5, 2, 7, 1, 0];
+
+          // function sort(arr) {
+          //   for (let i = 0; i < arr.length - 1; i++) {
+          //     for (let j = 0; j < arr.length - i - 1; j++) {
+          //       if (arr[j] > arr[j + 1]) {
+          //         let temp = arr[j];
+          //         arr[j] = arr[j + 1];
+          //         arr[j + 1] = temp;
+          //       }
+          //     }
+          //   }
+          //   return arr;
+          // }
+
+          // console.log("Before sorting: ", arr1);
+          // console.log("After sorting: ", sort(arr1));
     </script>
   </body>
 </html>
