@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Increment Button with Local Storage</title>
+</head>
+<body>
+    <button onclick="increment()">Increment</button>
+    <button onclick="increment2()">More Increment</button>
+    <p></p>
+    <p id="secondCounter"></p>
+    <script>
+        const KEY = "count-key";
+        const KEY2 = "count-key2";
+
+        const counterFromStorage = localStorage.getItem(KEY);
+        const counter2FromStorage = localStorage.getItem(KEY2);
+
+        let count = counterFromStorage == null ? 0 : Number(counterFromStorage);
+        let count2 = counter2FromStorage == null ? 0 : Number(counter2FromStorage);
+        
+        document.querySelector("p").innerText = `The first count is: ${count}`;
+        document.querySelector("#secondCounter").innerText = `The second count is: ${count2}`;
+
+      function increment() {
+        count++;
+        localStorage.setItem(KEY,count);
+        document.querySelector("p").innerText = `The first count is: ${count}`;
+      }
+
+      function increment2() {
+        count2++;
+        localStorage.setItem(KEY2, count2);
+        document.querySelector("#secondCounter").innerText = `The second count is: ${count2}`;
+      }
+    </script>
+</body>
+</html>

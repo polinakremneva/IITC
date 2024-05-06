@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>To Do List</h2>
+    <div class="row">
+      <input id="toDo" type="text" placeholder="Write task here..." />
+      <button onclick="addToDo()">Add To Do</button>
+      <button id="clearBtn">Clear An Array</button>
+    </div>
+    <div id="toDoContainer"></div>
+    <script>
+      let toDoList;
+      let key = "To Do List";
+
+      getStorage();
+      clearToDoContainer();
+
+      function addToDo() {
+        const input = document.querySelector("#toDo");
+
+        const newRow = document.createElement("p");
+        newRow.innerText = input.value;
+
+        if (toDoList.includes(input.value)) {
+          input.value = "";
+          return;
+        }
+
+        const div1 = document.createElement("div");
+        div1.classList.add("div1");
+
+        const removeButton = document.createElement("button");
+        removeButton.innerHTML = "Remove";
+        removeButton.onclick = function () {
+          remove(this.parentNode);
+        };
+
+        div1.appendChild(newRow);
+        div1.appendChild(removeButton);
+        document.querySelector("#toDoContainer").appendChild(div1);
+
+        toDoList.push(input.value);
+        setStorage();
+
+        input.value = "";
+      }
+      function setStorage() {
+        let toDoListAsString = JSON.stringify(toDoList);
+        localStorage.setItem(key, toDoListAsString);
+      }
+
+      function getStorage() {
+        if (localStorage.getItem(key)) {
+          const storedToDoList = localStorage.getItem(key);
+          toDoList = JSON.parse(storedToDoList);
+        } else {
+          toDoList = [];
+        }
+      }
+
+      function clearToDoContainer() {
+        const toDoContainer = document.querySelector("#toDoContainer");
+        toDoContainer.innerHTML = "";
+      }
+
+      function remove(obj) {
+        let index = toDoList.indexOf(obj.querySelector("p").innerText);
+        toDoList.splice(index, 1);
+        setStorage();
+        localStorage.removeItem(index);
+        obj.remove();
+      }
+
+      document.getElementById("clearBtn").addEventListener("click", clearAllToDos);
+
+      function clearAllToDos() {
+        localStorage.removeItem(key);
+        toDoList = [];
+        clearToDoContainer();
+      }
+    </script>
+  </body>
+</html>

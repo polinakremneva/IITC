@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function sortArray(array) {
+        let newArray = [];
+        while (array.length > 0) {
+          let minIndex = 0; 
+          for (let i = 1; i < array.length; i++) {
+            if (array[i] < array[minIndex]) {
+              minIndex = i;
+            }
+          }
+          newArray.push(array[minIndex]);
+          array.splice(minIndex, 1);
+        }
+        return newArray; 
+      }
+
+      const array = [2, 3, 5, 3, 6, 4, 11, 12];
+      console.log(sortArray(array)); 
+    </script>
+  </body>
+</html>
