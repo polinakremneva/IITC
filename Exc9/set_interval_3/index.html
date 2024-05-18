@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function printHelloWorld() {
+        console.log("Hello, world!");
+      }
+
+      window.onload = function () {
+        let interval = setInterval(function () {
+          printHelloWorld();
+          clearInterval(interval); 
+        }, 5000); 
+      };
+    </script>
+  </body>
+</html>

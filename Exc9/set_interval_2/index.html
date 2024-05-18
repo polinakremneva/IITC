@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+        version with changing in one row 
+    -->
+
+    <!-- <p class="result"></p>
+    <script>
+      function bubbleSort(array, resultElement) {
+        let sorted = false;
+    
+        function sortStep() {
+          for (let i = 1; i < array.length; i++) {
+            if (array[i - 1] > array[i]) {
+              let temp = array[i - 1];
+              array[i - 1] = array[i];
+              array[i] = temp;
+              sorted = true;
+              break;
+            }
+          }
+    
+          if (sorted) {
+            resultElement.textContent = array.join(", ");
+            sorted = false;
+          } else {
+            clearInterval(interval);
+          }
+        }
+    
+        let interval = setInterval(sortStep, 1500);
+        sortStep();
+      }
+    
+      let numbers = [1, 2, 5, 3, 2, 7, 4, 8, 11, 10, 14];
+      let result = document.querySelector(".result");
+      bubbleSort(numbers, result);
+    </script> -->
+
+    <!--
+        version with changing with each row
+    -->
+    <p class="result"></p>
+    <script>
+      function bubbleSort(array, resultElement) {
+        let sorted = false;
+
+        function sortStep() {
+          for (let i = 1; i < array.length; i++) {
+            if (array[i - 1] > array[i]) {
+              let temp = array[i - 1];
+              array[i - 1] = array[i];
+              array[i] = temp;
+              sorted = true;
+
+              // ---  Create a new paragraph element for the current state of the array
+              let newRow = document.createElement("p");
+              newRow.textContent = array.join(", ");
+
+              // --- Append the new row to the result element
+              resultElement.appendChild(newRow);
+
+              break;
+            }
+          }
+
+          if (sorted) {
+            sorted = false;
+          } else {
+            clearInterval(interval);
+          }
+        }
+
+        let interval = setInterval(sortStep, 1500);
+        sortStep();
+      }
+
+      let numbers = [1, 2, 5, 3, 2, 7, 4, 8, 11, 10, 14];
+      let result = document.querySelector(".result");
+      bubbleSort(numbers, result);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p class="timer"></p>
+    <button onclick="stopTimer()">Stop</button>
+    <script>
+      let seconds = 0; 
+      let interval = setInterval(myFunction, 1000);
+
+      function myFunction() {
+        seconds++;
+        let timerP = document.querySelector(".timer");
+        timerP.innerHTML = `the page is opened ${seconds} seconds`;
+      }
+
+      function stopTimer() {
+        clearInterval(interval);
+      }
+    </script>
+  </body>
+</html>
