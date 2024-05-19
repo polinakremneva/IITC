@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Progress Bar Example</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="progress-container">
+      <div class="progress-bar">0%</div>
+    </div>
+    <button id="progress-button" onclick="startProgressBar()">
+      Start Progress
+    </button>
+    <p class="result"></p>
+
+    <script>
+      function startProgressBar() {
+        let progressBar = document.querySelector(".progress-bar");
+        let resultElem = document.querySelector(".result");
+
+        progressBar.style.width = "0%";
+        progressBar.textContent = "0%";
+        resultElem.textContent = "";
+
+        function updateProgressBar() {
+          let promise = new Promise((resolve) => {
+            let width = 0;
+            const totalTime = 2000;
+            const increment = 1;
+
+            function update() {
+              if (width >= 100) {
+                resolve("Progress completed!");
+              } else {
+                width += increment;
+                progressBar.style.width = width + "%";
+                progressBar.textContent = width + "%";
+                setTimeout(update, totalTime / 150);
+              }
+            }
+            update();
+          });
+          return promise;
+        }
+
+        let promise = updateProgressBar();
+        promise.then((message) => {
+          resultElem.textContent = message;
+        });
+      }
+    </script>
+  </body>
+</html>

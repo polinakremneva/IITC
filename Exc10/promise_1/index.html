@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise Example</title>
+  </head>
+  <body>
+    <div class="result">
+      <button id="resultResolve" onclick="resolveHandler()">
+        Success Function
+      </button>
+      <button id="resultReject" onclick="rejectHandler()">
+        Failure Function
+      </button>
+    </div>
+    <div class="result-message"></div>
+    <script>
+      let resultElem = document.querySelector(".result-message");
+
+      const resolveHandler = () => {
+        setTimeout(() => {
+          resultElem.textContent = "success";
+        }, 2000);
+      };
+
+      const rejectHandler = () => {
+        setTimeout(() => {
+          resultElem.textContent = "failure";
+        }, 3000);
+      };
+
+      let promise = new Promise((resolve, reject) => {
+        if (resolveHandler()) {
+          resolve();
+        } else {
+          reject();
+        }
+      });
+
+      promise.then(resolveHandler).catch(rejectHandler);
+    </script>
+  </body>
+</html>

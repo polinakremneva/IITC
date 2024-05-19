@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let resolveHandle = (val) => {
+        console.log(`Resolved: ${val}`);
+      };
+      let rejectHandle = (val) => {
+        console.log(`Rejected: ${val}`);
+      };
+
+      function isEvenAsync(num) {
+        let promise = new Promise((resolve, reject) => {
+          if (num % 2 == 0) {
+            resolve(true);
+          } else if (typeof num == "string") {
+            reject("validation error");
+          }
+          else{
+            reject(false);
+          }
+        });
+        return promise;
+      }
+
+      let promise = isEvenAsync(9);
+      promise.then(resolveHandle).catch(rejectHandle);
+    </script>
+  </body>
+</html>
