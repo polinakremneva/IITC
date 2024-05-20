@@ -1,12 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="comments"></div>
+    <div class="spinner"></div>
+    <table>
+        <tr>
+          <th id="postId" style="border: 1px solid">postId</th>
+          <th id="id" style="border: 1px solid">ID</th>
+          <th id="name" style="border: 1px solid">Name</th>
+          <th id="email" style="border: 1px solid">Email</th>
+          <th id="body" style="border: 1px solid">Body</th>
+        </tr>
+      </table>
     <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
-    <script></script>
-</body>
+    <script>
+      const table = document.querySelector("table");
+      const comments = document.querySelector(".comments");
+      const spinner = document.querySelector(".spinner");
+      spinner.style.display = "block";
+
+      const url = "https://jsonplaceholder.typicode.com/comments";
+      axios
+        .get(url)
+        .then(function (response) {
+          //handle success
+          spinner.style.display = "none";
+          comments.textContent = `${response.data.length} comments`;
+          response.data.forEach((post) => {
+            const row = document.createElement("tr");
+
+            const postId = document.createElement("td");
+            postId.textContent = post.postId;
+            postId.style.border = "1px solid";
+            postId.style.textAlign = "center";
+            row.appendChild(postId);
+
+            const ID = document.createElement("td");
+            ID.textContent = post.id;
+            ID.style.border = "1px solid";
+            ID.style.textAlign = "center";
+            row.appendChild(ID);
+
+            const name = document.createElement("td");
+            name.textContent = post.name;
+            name.style.border = "1px solid";
+            name.style.textAlign = "center";
+            row.appendChild(name);
+
+            const email = document.createElement("td");
+            email.textContent = post.email;
+            email.style.border = "1px solid";
+            email.style.textAlign = "center";
+            row.appendChild(email);
+
+            const body = document.createElement("td");
+            body.textContent = post.body;
+            body.style.border = "1px solid";
+            body.style.textAlign = "center";
+            row.appendChild(body);
+
+            table.appendChild(row);
+          });
+        })
+        .catch(function (error) {
+          //handle error
+          comments.textContent = "no comments";
+        });
+    </script>
+  </body>
 </html>
