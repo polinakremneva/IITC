@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #loader {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loader">Loading...</div>
+    <table style="display: none;">
+      <th>username</th>
+      <th>id</th>
+      <th>title</th>
+      <th>body</th>
+    </table>
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+    <script>
+      const elemTable = document.querySelector("table");
+      const loader = document.getElementById("loader");
+
+      const urlPosts = "https://jsonplaceholder.typicode.com/posts";
+      const urlUsers = "https://jsonplaceholder.typicode.com/users";
+
+      let users = [];
+
+      // Show loader
+      loader.style.display = "block";
+
+      // Hide loader after 3 seconds
+      setTimeout(() => {
+        loader.style.display = "none";
+        elemTable.style.display = "block";
+
+        // Fetch users
+        axios
+          .get(urlUsers)
+          .then(function (response) {
+            let item = response.data;
+            users = [...item];
+            console.log(users);
+
+            // Fetch posts
+            axios.get(urlPosts).then(function (response) {
+              let posts = response.data;
+              for (let index = 0; index < posts.length; index++) {
+                let post = posts[index];
+                let user = users.find((user) => user.id === post.userId);
+                let username;
+                if (user) {
+                  username = user.username;
+                } else {
+                  username = "Unknown";
+                }
+                elemTable.innerHTML += `<tr>
+                    <td>${username}</td>
+                    <td>${post.id}</td>
+                    <td>${post.title}</td>
+                    <td>${post.body}</td>
+                    </tr>`;
+              }
+            });
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
+      }, 3000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="postsCount">Posts Count:</div>
+    <div id="commentsCount">Comments Count:</div>
+    <div id="usersCount">Users Count:</div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      const urlPosts = "https://jsonplaceholder.typicode.com/posts";
+      const urlComments = "https://jsonplaceholder.typicode.com/comments";
+      const urlUsers = "https://jsonplaceholder.typicode.com/users";
+
+      function updateDOM(elementId, text) {
+        document.getElementById(elementId).innerText = text;
+      }
+
+      axios.get(urlPosts).then((response) => {
+        const posts = response.data;
+        updateDOM("postsCount", `Posts Count: ${posts.length}`);
+        
+        axios.get(urlComments).then((response) => {
+          const comments = response.data;
+          updateDOM("commentsCount", `Comments Count: ${comments.length}`);
+          
+          axios.get(urlUsers).then((response) => {
+            const users = response.data;
+            updateDOM("usersCount", `Users Count: ${users.length}`);
+          }).catch(error => {
+            console.error("Error fetching users", error);
+          });
+
+        }).catch(error => {
+          console.error("Error fetching comments", error);
+        });
+
+      }).catch(error => {
+        console.error("Error fetching posts", error);
+      });
+    </script>
+  </body>
+</html>
