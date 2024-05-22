@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="summary">The summary:</p>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      const urlPosts = "https://jsonplaceholder.typicode.com/posts";
+      const urlComments = "https://jsonplaceholder.typicode.com/comments";
+      const urlUsers = "https://jsonplaceholder.typicode.com/users";
+
+      async function summary() {
+        const posts = await axios.get(urlPosts);
+        const comments = await axios.get(urlComments);
+        const users = await axios.get(urlUsers);
+        document.getElementById("summary").innerText = `The summary: ${
+          posts.data.length + comments.data.length + users.data.length
+        }`;
+      }
+      summary();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function pause(milliesecs) {
+        return new Promise((resolve) => {
+          setTimeout(resolve, milliesecs);
+        });
+      }
+
+      const f1 = () => console.log("f1 called");
+      const f2 = () => console.log("f2 called");
+      const f3 = () => console.log("f3 called");
+
+      async function delay() {
+        console.log("Before:", new Date());
+
+        await pause(3000);
+        f1();
+        console.log("After f1:", new Date());
+
+        await pause(5000);
+        f2();
+        console.log("After f2:", new Date());
+
+        await pause(7000);
+        f3();
+        console.log("After f3:", new Date());
+      }
+
+      delay();
+    </script>
+  </body>
+</html>
