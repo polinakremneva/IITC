@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD Application - Books</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="users.html">Users</a>
+        <a href="books.html">Books</a>
+    </nav>
+
+    <h1>CRUD Application for Books</h1>
+
+    <button id="getAllBooks">Get All Books</button>
+
+    <h2>Books</h2>
+    <table id="booksTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Num Pages</th>
+                <th>User ID</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <form id="createBookForm">
+        <h2>Create Book</h2>
+        <label for="bookName">Book Name:</label><br />
+        <input type="text" id="bookName" required /><br />
+        <label for="bookAuthor">Book Author:</label><br />
+        <input type="text" id="bookAuthor" required /><br />
+        <label for="numPages">Num Pages:</label><br />
+        <input type="number" id="numPages" required /><br />
+        <label for="userId">User ID:</label><br />
+        <input type="number" id="userId" required /><br />
+        <button type="submit">Create Book</button>
+    </form>
+
+    <form id="deleteBookForm">
+        <h2>Delete Book</h2>
+        <label for="deleteBookId">Book ID:</label><br />
+        <input type="number" id="deleteBookId" required /><br />
+        <button type="submit">Delete Book</button>
+    </form>
+
+    <form id="updateBookForm">
+        <h2>Update Book</h2>
+        <label for="updateBookId">Book ID:</label><br />
+        <input type="number" id="updateBookId" required /><br />
+        <label for="updateBookName">Book Name:</label><br />
+        <input type="text" id="updateBookName" /><br />
+        <label for="updateBookAuthor">Book Author:</label><br />
+        <input type="text" id="updateBookAuthor" /><br />
+        <label for="updateNumPages">Num Pages:</label><br />
+        <input type="number" id="updateNumPages" /><br />
+        <label for="updateUserId">User ID:</label><br />
+        <input type="number" id="updateUserId" /><br />
+        <button type="submit">Update Book</button>
+    </form>
+
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+    <script>
+        const booksUrl = "http://localhost:8001/books";
+
+        // Function to get all books
+        async function getAllBooks() {
+            try {
+                const response = await axios.get(booksUrl);
+                const books = response.data;
+                const booksTable = document.querySelector("#booksTable tbody");
+                booksTable.innerHTML = "";
+                books.forEach((book) => {
+                    const row = `<tr>
+                        <td>${book.id}</td>
+                        <td>${book.name}</td>
+                        <td>${book.author}</td>
+                        <td>${book.numPages}</td>
+                        <td>${book.userId}</td>
+                    </tr>`;
+                    booksTable.innerHTML += row;
+                });
+            } catch (error) {
+                console.error("Error fetching books:", error);
+            }
+        }
+
+        document.getElementById("getAllBooks").addEventListener("click", getAllBooks);
+
+        // Function to create a book
+        const createBook = async (event) => {
+            event.preventDefault();
+            const name = document.getElementById("bookName").value;
+            const author = document.getElementById("bookAuthor").value;
+            const numPages = document.getElementById("numPages").value;
+            const userId = document.getElementById("userId").value;
+
+            const book = { name, author, numPages, userId };
+
+            try {
+                await axios.post(booksUrl, book);
+                alert("Book created successfully!");
+                document.getElementById("createBookForm").reset();
+                getAllBooks();
+            } catch (error) {
+                console.error("Error creating book:", error);
+            }
+        };
+
+        document.getElementById("createBookForm").addEventListener("submit", createBook);
+
+        // Function to delete a book
+        const deleteBook = async (event) => {
+            event.preventDefault();
+            const bookId = document.getElementById("deleteBookId").value;
+
+            try {
+                await axios.delete(`${booksUrl}/${bookId}`);
+                alert("Book deleted successfully!");
+                document.getElementById("deleteBookForm").reset();
+                getAllBooks();
+            } catch (error) {
+                console.error("Error deleting book:", error);
+            }
+        };
+
+        document.getElementById("deleteBookForm").addEventListener("submit", deleteBook);
+
+        // Function to update a book
+        const updateBook = async (event) => {
+            event.preventDefault();
+            const bookId = document.getElementById("updateBookId").value;
+            const name = document.getElementById("updateBookName").value;
+            const author = document.getElementById("updateBookAuthor").value;
+            const numPages = document.getElementById("updateNumPages").value;
+            const userId = document.getElementById("updateUserId").value;
+
+            const book = {};
+            if (name) book.name = name;
+            if (author) book.author = author;
+            if (numPages) book.numPages = numPages;
+            if (userId) book.userId = userId;
+
+            try {
+                await axios.put(`${booksUrl}/${bookId}`, book);
+                alert("Book updated successfully!");
+                document.getElementById("updateBookForm").reset();
+                getAllBooks();
+            } catch (error) {
+                console.error("Error updating book:", error);
+            }
+        };
+
+        document.getElementById("updateBookForm").addEventListener("submit", updateBook);
+    </script>
+</body>
+</html>

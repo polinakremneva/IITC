@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD Application - Users</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="users.html">Users</a>
+        <a href="books.html">Books</a>
+    </nav>
+
+    <h1>CRUD Application for Users</h1>
+
+    <button id="getAllUsers">Get All Users</button>
+
+    <h2>Users</h2>
+    <table id="usersTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <form id="createUserForm">
+        <h2>Create User</h2>
+        <label for="firstName">First Name:</label><br />
+        <input type="text" id="firstName" required /><br />
+        <label for="lastName">Last Name:</label><br />
+        <input type="text" id="lastName" required /><br />
+        <button type="submit">Create User</button>
+    </form>
+
+    <form id="deleteUserForm">
+        <h2>Delete User</h2>
+        <label for="deleteUserId">User ID:</label><br />
+        <input type="number" id="deleteUserId" required /><br />
+        <button type="submit">Delete User</button>
+    </form>
+
+    <form id="updateUserForm">
+        <h2>Update User</h2>
+        <label for="updateUserId">User ID:</label><br />
+        <input type="number" id="updateUserId" required /><br />
+        <label for="updateFirstName">First Name:</label><br />
+        <input type="text" id="updateFirstName" /><br />
+        <label for="updateLastName">Last Name:</label><br />
+        <input type="text" id="updateLastName" /><br />
+        <button type="submit">Update User</button>
+    </form>
+    
+
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+    <script>
+        const usersUrl = "http://localhost:8001/users";
+
+        // Function to get all users
+        async function getAllUsers() {
+            try {
+                const response = await axios.get(usersUrl);
+                const users = response.data;
+                const usersTable = document.querySelector("#usersTable tbody");
+                usersTable.innerHTML = "";
+                users.forEach((user) => {
+                    const row = `<tr>
+                        <td>${user.id}</td>
+                        <td>${user.firstName}</td>
+                        <td>${user.lastName}</td>
+                    </tr>`;
+                    usersTable.innerHTML += row;
+                });
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            }
+        }
+
+        document.getElementById("getAllUsers").addEventListener("click", getAllUsers);
+
+        // Function to create a user
+        const createUser = async (event) => {
+            event.preventDefault();
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+
+            const user = { firstName, lastName };
+
+            try {
+                await axios.post(usersUrl, user);
+                alert("User created successfully!");
+                document.getElementById("createUserForm").reset();
+                getAllUsers();
+            } catch (error) {
+                console.error("Error creating user:", error);
+            }
+        };
+
+        document.getElementById("createUserForm").addEventListener("submit", createUser);
+
+        // Function to delete a user
+        const deleteUser = async (event) => {
+            event.preventDefault();
+            const userId = document.getElementById("deleteUserId").value;
+
+            try {
+                await axios.delete(`${usersUrl}/${userId}`);
+                alert("User deleted successfully!");
+                document.getElementById("deleteUserForm").reset();
+                getAllUsers();
+            } catch (error) {
+                console.error("Error deleting user:", error);
+            }
+        };
+
+        document.getElementById("deleteUserForm").addEventListener("submit", deleteUser);
+
+        // Function to update a user
+        const updateUser = async (event) => {
+            event.preventDefault();
+            const userId = document.getElementById("updateUserId").value;
+            const firstName = document.getElementById("updateFirstName").value;
+            const lastName = document.getElementById("updateLastName").value;
+
+            const user = {};
+            if (firstName) user.firstName = firstName;
+            if (lastName) user.lastName = lastName;
+
+            try {
+                await axios.put(`${usersUrl}/${userId}`, user);
+                alert("User updated successfully!");
+                document.getElementById("updateUserForm").reset();
+                getAllUsers();
+            } catch (error) {
+                console.error("Error updating user:", error);
+            }
+        };
+
+        document.getElementById("updateUserForm").addEventListener("submit", updateUser);
+    </script>
+</body>
+</html>
