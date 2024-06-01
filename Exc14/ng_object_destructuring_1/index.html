@@ -7,14 +7,17 @@
   </head>
   <body>
     <script>
-      function sumArray(numbers) {
-        return numbers.reduce((sum, num) => sum + num);
-      }
+      const person = {
+        name: "John",
+        age: 30,
+        city: "New York",
+      };
 
-      const array = [1, 2, 3, 4, 5];
-      const total = sumArray(array);
+      const { name, age, city } = person;
 
-      console.log(`Total sum: ${total}`); 
+      console.log(name);
+      console.log(age);
+      console.log(city);
     </script>
   </body>
 </html>

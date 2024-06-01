@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>CRUD Application for Users and Books</h1>
+
+    <button id="getAllUsers">Get All Users</button>
+    <button id="getAllBooks">Get All Books</button>
+
+    <h2>Users</h2>
+    <table id="usersTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>Books</h2>
+    <table id="booksTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Num Pages</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <form id="createUserForm">
+        <h2>Create User</h2>
+        <label for="firstName">First Name:</label><br />
+        <input type="text" id="firstName" required /><br />
+        <label for="lastName">Last Name:</label><br />
+        <input type="text" id="lastName" required /><br />
+        <label for="bookName">Book Name:</label><br />
+        <input type="text" id="bookName" required /><br />
+        <label for="bookAuthor">Book Author:</label><br />
+        <input type="text" id="bookAuthor" required /><br />
+        <label for="numPages">Num Pages:</label><br />
+        <input type="number" id="numPages" required /><br />
+        <button type="submit">Create User</button>
+    </form>
+
+    <form id="deleteUserForm">
+        <h2>Delete User</h2>
+        <label for="deleteUserId">User ID:</label><br />
+        <input type="number" id="deleteUserId" required /><br />
+        <button type="submit">Delete User</button>
+    </form>
+
+    <form id="updateUserForm">
+        <h2>Update User</h2>
+        <label for="updateUserId">User ID:</label><br />
+        <input type="number" id="updateUserId" required /><br />
+        <label for="updateFirstName">First Name:</label><br />
+        <input type="text" id="updateFirstName" /><br />
+        <label for="updateLastName">Last Name:</label><br />
+        <input type="text" id="updateLastName" /><br />
+        <label for="updateBookName">Book Name:</label><br />
+        <input type="text" id="updateBookName" /><br />
+        <label for="updateBookAuthor">Book Author:</label><br />
+        <input type="text" id="updateBookAuthor" /><br />
+        <label for="updateNumPages">Num Pages:</label><br />
+        <input type="number" id="updateNumPages" /><br />
+        <button type="submit">Update User</button>
+    </form>
+
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+    <script>
+        const usersUrl = "http://localhost:8001/users";
+        const booksUrl = "http://localhost:8001/books";
+
+        // Function to get all users
+        async function getAllUsers() {
+            try {
+                const response = await axios.get(usersUrl);
+                const users = response.data;
+                const usersTable = document.querySelector("#usersTable tbody");
+                usersTable.innerHTML = "";
+                users.forEach((user) => {
+                    const row = `<tr>
+                        <td>${user.id}</td>
+                        <td>${user.firstName}</td>
+                        <td>${user.lastName}</td>
+                    </tr>`;
+                    usersTable.innerHTML += row;
+                });
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            }
+        }
+
+        document.getElementById("getAllUsers").addEventListener("click", getAllUsers);
+
+        // Function to get all books
+        async function getAllBooks() {
+            try {
+                const response = await axios.get(booksUrl);
+                const books = response.data;
+                const booksTable = document.querySelector("#booksTable tbody");
+                booksTable.innerHTML = "";
+                books.forEach((book) => {
+                    const row = `<tr>
+                        <td>${book.id}</td>
+                        <td>${book.name}</td>
+                        <td>${book.author}</td>
+                        <td>${book.numPages}</td>
+                    </tr>`;
+                    booksTable.innerHTML += row;
+                });
+            } catch (error) {
+                console.error("Error fetching books:", error);
+            }
+        }
+
+        document.getElementById("getAllBooks").addEventListener("click", getAllBooks);
+
+        // Function to create a user
+        const createUser = async (event) => {
+            event.preventDefault();
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const bookName = document.getElementById("bookName").value;
+            const bookAuthor = document.getElementById("bookAuthor").value;
+            const numPages = document.getElementById("numPages").value;
+
+            const user = { firstName, lastName };
+            const book = { name: bookName, author: bookAuthor, numPages };
+
+            try {
+                const userResponse = await axios.post(usersUrl, user);
+                const userId = userResponse.data.id;
+                await axios.post(booksUrl, { ...book, userId });
+                alert("User created successfully!");
+                document.getElementById("createUserForm").reset();
+                getAllUsers();
+                getAllBooks();
+            } catch (error) {
+                console.error("Error creating user:", error);
+            }
+        };
+
+        document.getElementById("createUserForm").addEventListener("submit", createUser);
+
+        // Function to delete a user
+        const deleteUser = async (event) => {
+            event.preventDefault();
+            const userId = document.getElementById("deleteUserId").value;
+
+            try {
+                await axios.delete(`${usersUrl}/${userId}`);
+                await axios.delete(`${booksUrl}/${userId}`);
+                alert("User deleted successfully!");
+                document.getElementById("deleteUserForm").reset();
+                getAllUsers();
+                getAllBooks();
+            } catch (error) {
+                console.error("Error deleting user:", error);
+            }
+        };
+
+        document.getElementById("deleteUserForm").addEventListener("submit", deleteUser);
+
+        // Function to update a user
+        const updateUser = async (event) => {
+            event.preventDefault();
+            const userId = document.getElementById("updateUserId").value;
+            const firstName = document.getElementById("updateFirstName").value;
+            const lastName = document.getElementById("updateLastName").value;
+            const bookName = document.getElementById("updateBookName").value;
+            const bookAuthor = document.getElementById("updateBookAuthor").value;
+            const numPages = document.getElementById("updateNumPages").value;
+
+            const user = {};
+            if (firstName) user.firstName = firstName;
+            if (lastName) user.lastName = lastName;
+
+            const book = {};
+            if (bookName) book.name = bookName;
+            if (bookAuthor) book.author = bookAuthor;
+            if (numPages) book.numPages = numPages;
+
+            try {
+                await axios.put(`${usersUrl}/${userId}`, user);
+
+                const existingBookResponse = await axios.get(`${booksUrl}?userId=${userId}`);
+                const existingBook = existingBookResponse.data[0];
+
+                if (existingBook) {
+                    await axios.put(`${booksUrl}/${existingBook.id}`, { ...book, userId });
+                } else {
+                    await axios.post(booksUrl, { ...book, userId });
+                }
+
+                alert("User updated successfully!");
+                document.getElementById("updateUserForm").reset();
+                getAllUsers();
+                getAllBooks();
+            } catch (error) {
+                console.error("Error updating user:", error);
+            }
+        };
+
+        document.getElementById("updateUserForm").addEventListener("submit", updateUser);
+    </script>
+</body>
+</html>

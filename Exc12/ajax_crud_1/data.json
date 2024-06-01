@@ -1,0 +1,54 @@
+{
+  "users": [
+    {
+      "id": "5853",
+      "firstName": "polina",
+      "lastName": "kremneva"
+    },
+    {
+      "id": "673f",
+      "firstName": "polina",
+      "lastName": "kremneva"
+    },
+    {
+      "id": "6b70",
+      "firstName": "polina",
+      "lastName": "kremneva"
+    },
+    {
+      "id": "15df",
+      "firstName": "polina",
+      "lastName": "kremneva"
+    }
+  ],
+  "books": [
+    {
+      "id": "cac4",
+      "name": "story",
+      "author": "polina",
+      "numPages": "200",
+      "userId": "5853"
+    },
+    {
+      "id": "900c",
+      "name": "story",
+      "author": "polina",
+      "numPages": "2999",
+      "userId": "673f"
+    },
+    {
+      "id": "16c6",
+      "name": "story",
+      "author": "polina",
+      "numPages": "2000",
+      "userId": "6b70"
+    },
+    {
+      "id": "c920",
+      "name": "story",
+      "author": "polina",
+      "numPages": "2999",
+      "userId": "15df"
+    }
+  ]
+}

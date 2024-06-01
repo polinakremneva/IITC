@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"></script>
-</head>
-<body>
-  <button id="postButton">Post</button>
-  <script>
-    document.getElementById('postButton').addEventListener('click', function(event) {
-      event.preventDefault();
-      post500();
-    });
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="addUsers">ADD USERS</button>
+    <button id="addBooks">ADD BOOKS</button>
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+    <script>
+      const usersUrl = "http://localhost:8001/users";
+      const booksUrl = "http://localhost:8001/books";
 
-    const url = "http://localhost:8001/users";
-    function post500() {
-      for (let i = 1; i <= 500; i++) {
-        const data = {
-          firstName: `firstName${i}`,
-          lastName: `lastName${i}`,
-          books: {
-            id: i,
+      const addUserObj = () => {
+        for (let i = 1; i <= 500; i++) {
+          const user = {
+            id: `${i}`,
+            firstName: `user${i}`,
+            lastName: `lastName${i}`,
+          };
+          axios.post(usersUrl, user);
+        }
+      };
+      const addUsersBtn = document.querySelector("#addUsers");
+      addUsersBtn.addEventListener("click", addUserObj());
+
+      const addBookObj = () => {
+        for (let i = 0; i <= 500; i++) {
+          const book = {
+            id: `${i}`,
             name: `name${i}`,
             author: `author${i}`,
-            numPages: i + 100,
-          },
-        };
-        axios.post(url, data)
-          .then(response => {
-            console.log(`Posted user ${i}:`, response.data);
-          })
-          .catch(error => {
-            console.error(`Error posting user ${i}:`, error);
-          });
-      }
-    }
-  </script>
-</body>
+            numPages: `numPages${i}`,
+          };
+          axios.post(booksUrl, book);
+        }
+      };
+      const addbooksBtn = document.querySelector("#addBooks");
+      addbooksBtn.addEventListener("click", addBookObj());
+    </script>
+  </body>
 </html>

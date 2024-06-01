@@ -1,38 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script>
-      const driveToGasStation = () =>
-        new Promise((resolve, reject) => {
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const driveToGasStation = () =>
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
           resolve("Drive to gas station");
-        });
-      const fillTheCar = () =>
-        new Promise((resolve, reject) => {
-          resolve("Fill the car");
-        });
-      const driveToResturant = () =>
-        new Promise((resolve, reject) => {
-          resolve("Drive to restaurant");
-        });
+        }, 1000);
+      });
 
-      driveToGasStation()
-        .then((action) => {
-          console.log(action);
-          return fillTheCar();
-        })
-        .then((action) => {
-          console.log(action);
-          return driveToResturant();
-        })
-        .then((action) => {
-          console.log(action);
-        })
-        .catch((error) => console.error(error));
-    </script>
-  </body>
+    const fillTheCar = () =>
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("Fill the car");
+        }, 3000);
+      });
+
+    const driveToRestaurant = () =>
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("Drive to a restaurant");
+        }, 6000);
+      });
+
+    driveToGasStation()
+      .then((action) => {
+        console.log(action);
+        return fillTheCar();
+      })
+      .then((action) => {
+        console.log(action);
+        return driveToRestaurant();
+      })
+      .then((action) => {
+        console.log(action);
+      })
+      .catch((error) => console.error(error));
+  </script>
+</body>
 </html>

@@ -59,11 +59,11 @@
               array[i] = temp;
               sorted = true;
 
-              // ---  Create a new paragraph element for the current state of the array
+              // --- new paragraph element for the current array
               let newRow = document.createElement("p");
               newRow.textContent = array.join(", ");
 
-              // --- Append the new row to the result element
+              // --- the new row to the result element
               resultElement.appendChild(newRow);
 
               break;

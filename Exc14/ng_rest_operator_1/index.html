@@ -7,14 +7,13 @@
   </head>
   <body>
     <script>
-      function sumArray(numbers) {
-        return numbers.reduce((sum, num) => sum + num);
+      function sumAll(...numbers) {
+        return numbers.reduce((total, number) => total + number, 0);
       }
 
-      const array = [1, 2, 3, 4, 5];
-      const total = sumArray(array);
-
-      console.log(`Total sum: ${total}`); 
+      console.log(sumAll(1, 2, 3)); 
+      console.log(sumAll(1, 2, 3, 4, 5)); 
+      console.log(sumAll(10, 20, 30, 40, 50)); 
     </script>
   </body>
 </html>

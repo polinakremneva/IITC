@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Person Class Example</title>
+</head>
+<body>
+  <script>
+    class Person {
+      constructor(name, age, height) {
+        this.name = name;
+        this.age = age;
+        this.height = height;
+      }
+
+      write() {
+        console.log(`Name: ${this.name}, Age: ${this.age}, Height: ${this.height}`);
+      }
+    }
+
+    const student1 = new Person('John Doe', 20, '6ft');
+    const student2 = new Person('Jane Smith', 22, '5ft 7in');
+
+    student1.write();
+    student2.write();
+  </script>
+</body>
+</html>

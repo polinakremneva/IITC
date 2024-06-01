@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Class Example</title>
+</head>
+<body>
+  <script>
+    class Person {
+      constructor(name, age, height) {
+        this.name = name;
+        this.age = age;
+        this.height = height;
+      }
+
+      write() {
+        console.log(`Name: ${this.name}, Age: ${this.age}, Height: ${this.height}`);
+      }
+    }
+
+    class Employee extends Person {
+      constructor(name, age, height, jobDescription, jobPosition) {
+        super(name, age, height);
+        this.jobDescription = jobDescription;
+        this.jobPosition = jobPosition;
+      }
+
+      write() {
+        console.log(`Name: ${this.name}, Age: ${this.age}, Height: ${this.height}, Job Description: ${this.jobDescription}, Job Position: ${this.jobPosition}`);
+      }
+    }
+
+    const manager = new Employee('Alice', 35, '5ft 8in', 'Manages team and projects', 'Project Manager');
+
+    manager.write();
+  </script>
+</body>
+</html>

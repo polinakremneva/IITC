@@ -26,6 +26,7 @@
 
         const newRow = document.createElement("p");
         newRow.innerText = input.value;
+        newRow.onclick = changeColorOfRow()
 
         if (toDoList.includes(input.value)) {
           input.value = "";
@@ -77,12 +78,28 @@
         obj.remove();
       }
 
-      document.getElementById("clearBtn").addEventListener("click", clearAllToDos);
+      document
+        .getElementById("clearBtn")
+        .addEventListener("click", clearAllToDos);
 
       function clearAllToDos() {
         localStorage.removeItem(key);
         toDoList = [];
         clearToDoContainer();
+      }
+
+      function changeColorOfRow(elem) {
+        for (let i of toDoList) {
+          if (i.value == elem.innerText) {
+            if (i.color != "green") {
+              elem.style.color = "green";
+              i.color = "green";
+            } else {
+              elem.style.color = "black";
+              i.color = "black";
+            }
+          }
+        }
       }
     </script>
   </body>
