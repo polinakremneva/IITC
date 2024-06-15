@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+#first-Part {
+  height: 40vh;
+  background-image: url(../assets/images/background-pattern-desktop.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#second-Part {
+  height: 60vh;
+  background-color: #f9eeff;
+}
+
+main {
+  position: absolute;
+  z-index: 111;
+  top: 8em;
+  left: 24em;
+  background-color: white;
+  width: 33%;
+  padding-inline: 1.7em;
+  padding-top: 0.5em;
+  border-radius: 0.6em;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.header svg {
+  width: 1.9em;
+  height: 1.9em;
+}
+.header h1 {
+  font-weight: 700;
+  font-size: 2.5em;
+  color: #2f1433;
+}
+.question-button {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.3em;
+}
+
+.question-button h1 {
+  font-size: 0.9em;
+  color: #2f1433;
+  font-weight: 600;
+}
+p{
+    font-size: 0.8em;
+    color: #734978;
+    line-height: 1.5em;
+    text-align: start;
+    margin-bottom: 1.6em;
+}
+
+.question-button button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding-top: 0.5em;
+}
+.question-button svg{
+    width: 1.8em;
+    height: 1.8em;
+}
+
+@media (max-width: 768px) {
+    main {
+      top: 6em;
+      left: 10%;
+      width: 80%;
+      padding-inline: 1em;
+    }
+    .header h1 {
+        font-size: 2em;
+      }
+      .question-button h1 {
+        font-size: 1.2em;
+      }
+      p {
+        font-size: 1em;
+      }
+  }
+  
+  @media (max-width: 480px) {
+    main {
+      top: 4em;
+      left: 0.7em;
+      width: 90%;
+      padding-inline: 0.5em;
+    }
+    .header h1 {
+      font-size: 2em;
+    }
+    .question-button h1 {
+      font-size: 1.2em;
+    }
+    p {
+      font-size: 1em;
+    }
+  }

@@ -79,14 +79,7 @@ function App() {
         <button>Add</button>
       </form>
 
-      <div className="statistics">
-        <p>Total Todos: {totalTodos}</p>
-        <p>Completed Todos: {completedTodos}</p>
-        <p>Active Todos: {activeTodos}</p>
-        <div className="progress-bar-container">
-          <div className="progress-bar" style={{ width: `${completionPercentage}%` }}></div>
-        </div>
-      </div>
+      
 
       <ul className="todo-list">
         {todos.length === 0 ? (
